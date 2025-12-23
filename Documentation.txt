@@ -1,0 +1,31 @@
+I. Experimental Environment
+The experimental environment is built on the Python 3.8 platform, using PyTorch 2.0.0 as the machine learning library.
+Experiments are conducted on an Ubuntu 20.04 platform equipped with 60G RAM and an AMD EPYC 7T83 (32-core) processor.
+
+II. Computational Overhead Analysis
+
+Time Complexity Analysis
+
+(1) Siamese Network Module:
+Encoder time complexity: O(d₁×h + h×h + h×d₂) ≈ O(h²)
+h: hidden layer dimension; d₁: state dimension; d₂: output dimension
+Projection head time complexity: O(d₂² + d₂²) ≈ O(d₂²)
+Prediction head time complexity: O(d₂² + d₂²) ≈ O(d₂²)
+Total time complexity of the Siamese network module: O(h² + d₂²) ≈ O(h²)
+
+(2) Policy Network Time Complexity
+O(D×h + h×h + h×A) ≈ O(h²)
+D: agent observation dimension
+A: agent action dimension
+
+(3) Residual Network Time Complexity: O(d₂×h + h×h + h×1) ≈ O(h²)
+
+(4) Training Process Time Complexity: O(B×L×h²)
+Total time complexity: O(N×h²)
+
+Space Complexity Analysis
+
+Total space of experience replay buffer: O(B×L×(N×D + S + N×A))
+S: state dimension
+
+Space complexity: the dominant term is O(N×D) (where B and L are constants)
